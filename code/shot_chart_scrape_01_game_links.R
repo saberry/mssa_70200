@@ -14,6 +14,7 @@ library(furrr)
 library(future)
 library(httr2)
 library(magrittr)
+library(purrr)
 library(rvest)
 
 game_days <- expand.grid(
@@ -73,16 +74,17 @@ all_pbp_links <- furrr::future_map(game_day_links, ~{
       html_elements("a.AnchorLink[href*='gameId']") %>%
       html_attr("href")
     
-    return(links)
+    result <- data.frame(link = links, 
+                         date = .x)
+    return(result)
   }, error = function(e) {
-    return(paste0("Problem:", .x))
+    return(data.frame(link = NA, 
+                      date = .x))
   })
   
 }, .options = furrr_options(seed = NULL))
 
-all_pbp_links <- unlist(all_pbp_links)
-
-sum(grepl("Problem", all_pbp_links))
+all_pbp_links <- dplyr::bind_rows(all_pbp_links)
 
 save(all_pbp_links, file = "data/all_game_links.RData")
 

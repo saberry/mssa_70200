@@ -20,9 +20,9 @@ game_links <- data.frame(
 
 game_links <- game_links[!duplicated(game_links$gameId), ]
 
-game_pbp_links <- paste0(
+game_links$game_pbp_links <- paste0(
   "https://www.espn.com/nba/playbyplay/_/gameId/", 
   game_links$gameId
 )
 
-write.csv(game_pbp_links, "data/game_pbp_links.csv", row.names = FALSE)
+write.csv(game_links, "data/game_pbp_links.csv", row.names = FALSE)

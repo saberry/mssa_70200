@@ -31,13 +31,19 @@ for link in pbp_links['game_pbp_links'].loc[1:2]:
 
     for quarter in range(quarter_button_count):
       page.locator("css=.Button--unstyled.tabs__link").nth(quarter).click()
+      
       quarter_read = pd.read_html(StringIO(page.inner_html("*")), match="PLAY")[0]
+      
       quarter_read['quarter'] = quarter + 1
+      
       logo_counter = page.locator(
       "css=.playByPlay__logo.Table__TD img.Image.Logo.Logo__sm"
       ).count()
+      
+      
+      print(quarter)
 
-      if quarter < 3:
+      if quarter+1 != quarter_button_count:
         logo_container = np.empty(shape=logo_counter + 1, dtype=object)
       else:
         logo_container = np.empty(shape=logo_counter + 2, dtype=object)
@@ -48,7 +54,7 @@ for link in pbp_links['game_pbp_links'].loc[1:2]:
           ).all()[logo].get_attribute("src")
         logo_container[logo] = logos
 
-      if quarter < 3:
+      if quarter+1 != quarter_button_count:
         logo_container[logo+1] = np.nan
       else:
         logo_container[logo+1] = np.nan

@@ -86,10 +86,13 @@ def pbp_getter(link):
   return results
 
 
-pbp_getter(pbp_links['game_pbp_links'][1])
+pbp_getter(pbp_links['game_pbp_links'][2])
 
-results = Parallel(n_jobs=8)(delayed(pbp_getter)(i) for i in pbp_links['game_pbp_links'])
+results = Parallel(n_jobs=10)(delayed(pbp_getter)(i) for i in pbp_links['game_pbp_links'])
 
+results_concat = pd.concat(results)
+
+results_concat.to_csv("data/all_nba_pbp_data.csv", index = False)
 
 # Sequential processing below:
 

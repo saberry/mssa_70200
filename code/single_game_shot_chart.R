@@ -46,10 +46,6 @@ result <- ifelse(grepl("misses|blocks", shot_info), "missed", "made")
 full_table <- read_html("https://www.espn.com/nba/playbyplay/_/gameId/401360926") |> 
   html_table() 
 
-read_html("https://www.espn.com/nba/playbyplay/_/gameId/401360926") |> 
-  html_elements("*") |> 
-  html_text()
-
 full_table <- full_table[[which(grepl("PLAY", sapply(full_table, colnames)))]]
 
 final_df <- data.frame(shooter, distance, result)

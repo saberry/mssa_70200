@@ -10,7 +10,7 @@ results = [] * pbp_links['game_pbp_links'].size
 
 pw = sync_playwright().start()
 
-chrome = pw.chromium.launch(headless=True)
+chrome = pw.chromium.launch(headless=False)
 
 page = chrome.new_page()
 

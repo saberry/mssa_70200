@@ -29,7 +29,7 @@ lbj$x_scale <- (lbj$x_rotate - 50) * .5
 lbj$y_scale <- (lbj$y_rotate + 100) * 1
 
 
-ggplot(data=data.frame(x=1,y=1),aes(x,y))+
+anim_plot <- ggplot(data=data.frame(x=1,y=1),aes(x,y))+
   geom_hex(data = lbj, mapping = aes(x_scale, y_scale, group = year)) + 
   ###outside box:
   geom_path(data=data.frame(x=c(-25,-25,25,25,-25),y=c(0,47,47,0,0)))+
@@ -56,3 +56,5 @@ ggplot(data=data.frame(x=1,y=1),aes(x,y))+
   labs(title = paste0("GOAT Shots for ", "{closest_state}")) +
   transition_states(year) +
   theme_void()
+
+anim_save("lbj_shots.gif")

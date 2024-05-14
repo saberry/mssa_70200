@@ -1,0 +1,9 @@
+---
+title: "Logistic Regression"
+format:
+  html:
+    toc: true
+    toc-location: left
+    self-contained: true
+---
+

@@ -1,0 +1,9 @@
+---
+title: "Mixed Effects Models"
+format:
+  html:
+    toc: true
+    toc-location: left
+    self-contained: true
+---
+

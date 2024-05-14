@@ -1,7 +1,7 @@
 library(data.table)
 library(gganimate)
 library(ggplot2)
-t
+
 load("data/nba_pbp_14_24.RData")
 
 lbj <- all_pbp_data[grepl("LeBron James", all_pbp_data$shooter), ]
